@@ -31,5 +31,10 @@ pipeline{
                 }
             }        
             }
+        
+        stage("Ansible playbook")
+            steps{
+                sh "ansiblePlaybook becomeUser: null, disableHostKeyChecking: true, extras: 'BUILD_NUMBER=${BUILD_NUMBER}', inventory: '/home/ec2-user/hosts', playbook: '/home/ec2-user/playbook.yaml"
+            }
 }
 }
